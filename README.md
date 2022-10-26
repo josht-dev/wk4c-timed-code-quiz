@@ -43,3 +43,4 @@ If you followed tutorials, include links to those here as well.
 ## License
 
 Refer to the LICENSE in the repo for the code
+The font (Montserrat) is licensed under the SIL Open Font License (OFL).

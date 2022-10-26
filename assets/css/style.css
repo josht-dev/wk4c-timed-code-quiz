@@ -1,4 +1,25 @@
-/* TO DO - General page styling */
+/* Use variables for universal styling of page */
+:root {
+    /* Page color schema */
+    /* TO DO - decide on page color schema */
+    --color-primary: white;
+    --color-primary-variant: white;
+    --color-on-primary: white;
+    --color-secondary: white;
+    --color-secondary-variant: white;
+    --color-on-secondary: white;
+    --color-bg: white;
+    --color-on-bg: white;
+    --color-surface: white;
+    --color-on-surface: white;
+    --color-error: white;
+    --color-on-error: white;
+}
+
+/* Universal page styling */
+* {
+    font-family: 'Montserrat', 'Times New Roman', Times, serif;
+}
 
 /* TO DO - Right side high score tracker */
 
