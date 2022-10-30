@@ -11,17 +11,44 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <!-- TO DO - View highscore -->
     <!-- TO DO - Time tracker -->
+    <header>
+        <h2>Time: <span id="timer"></span></h2>
+    </header>
+    <!-- TO DO - View highscore -->
+    <section id="container-scoreList">
+        <h2>High Scores</h2>
+        <ul id="scoreList">
+            <!-- TO DO - Score data from local host dynamically generated -->
+            <li class="score">AAA 42</li>
+            <li class="score">BBB 56</li>
+        </ul>
+    </section>
     <!-- TO DO - Quiz challenge title -->
-    <!-- TO DO - Container holding quiz (question, answers, right/wrong) -->
-    <!-- TO DO - Container holding question -->
-    <!-- TO DO - Container holding possible answers -->
-    <!-- TO DO - Container indicating right or wrong answer -->
+    <!-- Container holding quiz (question, answers, right/wrong) -->
+    <section id="container-quiz">
+        <!-- TO DO - Container holding question -->
+        <article>
+            <p>This is a test question. Testing out the CSS to style the real questions that will be used later. It needs to be longer than expected to anticipate more in-depth questions and possibly code segments...</p>
+        </article>
+        <!-- Container holding 4 possible answers -->
+        <article>
+            <span class="answer" data-answer="false">A: This is the answer to A.</span>
+            <span class="answer" data-answer="false">B: This is B and is a little longer to try and anticipate code segments and what not...</span>
+            <span class="answer" data-answer="true">C: It's always C....</span>
+            <span class="answer" data-answer="false">D: The all of the above answer..... </span>
+        </article>
+        <!-- Divs indicating right or wrong answer -->
+        <div id="correct">Correct!</div>
+        <div id="incorrect">Incorrect!!</div>
+    </section>
     <!-- TO DO - Game over container (score, high score initials input) -->
-    <!-- TO DO - Container holding score/high score -->
-    <!-- TO DO - Initials for high score input -->
-    <!-- TO DO - End of quiz high score list -->
+    <section id="container-gameOver">
+        <!-- TO DO - Container holding score/high score -->
+        <!-- TO DO - Initials for high score input -->
+        <!-- TO DO - End of quiz high score list -->
+    </section>
+    <!-- Load JS for dynamically created quiz -->
     <script src="./assets/scripts/script.js"></script>
 </body>
 </html>
