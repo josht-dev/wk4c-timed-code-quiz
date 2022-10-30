@@ -1,19 +1,23 @@
 /* Use variables for universal styling of page */
 :root {
-    /* Page color schema */
-    /* TO DO - decide on page color schema */
-    --color-primary: white;
-    --color-primary-variant: white;
-    --color-on-primary: white;
-    --color-secondary: white;
-    --color-secondary-variant: white;
-    --color-on-secondary: white;
-    --color-bg: white;
-    --color-on-bg: white;
-    --color-surface: white;
-    --color-on-surface: white;
-    --color-error: white;
-    --color-on-error: white;
+    /* Page color schema - Generated with the help of 
+    the Material UI color tool for accessibility*/
+    --color-primary: #1b5e20;
+    --color-primary-light: #4c8c4a;
+    --color-primary-dark: #003300;
+    --color-on-primary: #fff;
+    --color-on-primary-light: #000;
+    --color-secondary: #00838f;
+    --color-secondary-light: #4fb3bf;
+    --color-secondary-dark: #005662;
+    --color-on-secondary: #fff;
+    --color-on-secondary-light: #000;
+    --color-bg: #fff;
+    --color-on-bg: #000;
+    --color-surface: #fff;
+    --color-on-surface: #000;
+    --color-error: #b00020;
+    --color-on-error: #fff;
 }
 
 /* Universal page styling */
@@ -23,7 +27,8 @@
 
 /* TO DO - Right side time tracker   */
 header {
-
+    width: 100%;
+    background-color: var(--color-on-primary);
 }
 
 #timer {
