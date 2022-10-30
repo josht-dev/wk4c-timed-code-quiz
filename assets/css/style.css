@@ -21,23 +21,61 @@
     font-family: 'Montserrat', 'Times New Roman', Times, serif;
 }
 
-/* TO DO - Right side high score tracker */
+/* TO DO - Right side time tracker   */
+header {
 
-/* TO DO - Left side time tracker   */
+}
 
-/* TO DO - Center Container that holds title and quiz data */
+#timer {
+
+}
+
+/* TO DO - Left side high score tracker */
+#container-scoreList {
+
+}
+
+#scoreList {
+
+}
+
+.score {
+
+}
 
 /* TO DO - Quiz center title */
+
+/* TO DO - Center Container that holds title and quiz data */
+#container-quiz {
+
+}
+
+#container-quiz article {
+
+}
 
 /* TO DO - Quiz center question container */
 
 /* TO DO - Quiz center multiple answer container */
+.answer {
+
+}
 
 /* TO DO - Quiz correct/incorrect container */
+.correctYesNo {
+
+}
+
+.hidden {
+
+}
 
 /* TO DO - Game over container */
+#container-gameOver {
 
-/* TO DO - High score list */
+}
+
+/* TO DO - Game over High score list */
 
 /* Responsive CSS for small devices */
 /* TO DO - Tablet size */
