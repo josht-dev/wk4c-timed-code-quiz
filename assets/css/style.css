@@ -25,14 +25,29 @@
     font-family: 'Montserrat', 'Times New Roman', Times, serif;
 }
 
+body {
+    width: 100%;
+}
+
 /* TO DO - Right side time tracker   */
 header {
     width: 100%;
-    background-color: var(--color-on-primary);
+    margin: 5rem 0 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: flex-end;
+}
+
+header h2 {
+    width: 4.8rem;
+    margin-right: 5rem;
+    color: var(--color-on-primary);
+    
 }
 
 #timer {
-
+    color: var(--color-on-primary);
 }
 
 /* TO DO - Left side high score tracker */
@@ -52,27 +67,41 @@ header {
 
 /* TO DO - Center Container that holds title and quiz data */
 #container-quiz {
-
+    width: 45rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #container-quiz article {
-
+    height: 5rem;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-primary-light);
+    color: var(--color-on-primary-light);
 }
 
 /* TO DO - Quiz center question container */
 
 /* TO DO - Quiz center multiple answer container */
 .answer {
-
+    
 }
 
 /* TO DO - Quiz correct/incorrect container */
 .correctYesNo {
-
+    padding: .5rem;
+    border-top: .5rem double var(--color-secondary);
+    border-radius: 1rem;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .hidden {
-
+    display: none;
 }
 
 /* TO DO - Game over container */
