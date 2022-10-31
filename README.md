@@ -34,6 +34,8 @@ Deployed page link: https://josht-dev.github.io
 
 ## Credits
 
+Page color schema - Generated with the help of the Material UI color tool for accessibility. https://m2.material.io/resources/color/#!/?view.left=0&view.right=0
+
 List your collaborators, if any, with links to their GitHub profiles.
 
 If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
