@@ -18,6 +18,17 @@ WHEN the game is over
 THEN I can save my initials and my score
 */
 
+// DOM global variables
+let htmlTime = document.getElementById("timer");
+
+// DOM TESTING BUTTON - REMOVE LATER
+const testBtn = document.getElementById("testBtn");
+testBtn.addEventListener("click", function() {
+    // testing timer function
+    countDown();
+});
+
+
 /* TO DO - Object that stores arrays of question/answer key/value pairs
 ex: obj {
     question1: {
@@ -49,6 +60,26 @@ ex: obj {
 */
 
 // TO DO - Start timer, end timer code block...
+function countDown() {
+    // Time user starts with to finish quiz
+    let timeLeft = 5;
+    htmlTime.textContent = timeLeft;
+
+    // Countdown timer function
+    let timeInterval = setInterval(function() {
+        timeLeft--;
+        htmlTime.textContent = timeLeft;
+
+        // Check if time ran out
+        if (!timeLeft) {
+            clearInterval(timeInterval);
+            
+
+
+        }
+    }, 1000);
+}
+
 
 // TO DO - Subtract time from wrong answer code block...
 
