@@ -21,11 +21,21 @@ THEN I can save my initials and my score
 // DOM global variables
 let htmlTime = document.getElementById("timer");
 
+// JS global variables
+let timeLeft = 120;
+
+
+
 // DOM TESTING BUTTON - REMOVE LATER
 const testBtn = document.getElementById("testBtn");
 testBtn.addEventListener("click", function() {
     // testing timer function
     countDown();
+});
+const testBtn2 = document.getElementById("testBtn2");
+testBtn2.addEventListener("click", function() {
+    // testing timer subtract function
+    subtractTime();
 });
 
 
@@ -59,10 +69,11 @@ ex: obj {
 }
 */
 
-// TO DO - Start timer, end timer code block...
+
+// Timer code block
 function countDown() {
     // Time user starts with to finish quiz
-    let timeLeft = 5;
+    
     htmlTime.textContent = timeLeft;
 
     // Countdown timer function
@@ -73,15 +84,17 @@ function countDown() {
         // Check if time ran out
         if (!timeLeft) {
             clearInterval(timeInterval);
-            
-
-
         }
     }, 1000);
 }
 
+// Call this function to subtract time for a wrong answer
+function subtractTime() {
+    timeLeft -= 20;
+}
 
-// TO DO - Subtract time from wrong answer code block...
+
+
 
 // TO DO - Hide quiz title in html
 
