@@ -18,14 +18,6 @@ WHEN the game is over
 THEN I can save my initials and my score
 */
 
-// DOM global variables
-let htmlTime = document.getElementById("timer");
-
-// JS global variables
-let timeLeft = 120;
-
-
-
 // DOM TESTING BUTTON - REMOVE LATER
 const testBtn = document.getElementById("testBtn");
 testBtn.addEventListener("click", function() {
@@ -37,6 +29,39 @@ testBtn2.addEventListener("click", function() {
     // testing timer subtract function
     subtractTime();
 });
+
+
+
+// DOM global variables
+let htmlTime = document.getElementById("timer");
+
+// JS global variables
+let timeLeft = 60;
+
+// Functions used for this page
+
+// Timer code block
+function countDown() {
+    // Time user starts with to finish quiz
+    
+    htmlTime.textContent = timeLeft;
+
+    // Countdown timer function
+    let timeInterval = setInterval(function() {
+        timeLeft--;
+        htmlTime.textContent = timeLeft;
+
+        // Check if time ran out
+        if (!timeLeft) {
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+}
+
+// Call this function to subtract time for a wrong answer
+function subtractTime() {
+    timeLeft -= 20;
+}
 
 
 /* TO DO - Object that stores arrays of question/answer key/value pairs
@@ -69,40 +94,11 @@ ex: obj {
 }
 */
 
-
-// Timer code block
-function countDown() {
-    // Time user starts with to finish quiz
-    
-    htmlTime.textContent = timeLeft;
-
-    // Countdown timer function
-    let timeInterval = setInterval(function() {
-        timeLeft--;
-        htmlTime.textContent = timeLeft;
-
-        // Check if time ran out
-        if (!timeLeft) {
-            clearInterval(timeInterval);
-        }
-    }, 1000);
-}
-
-// Call this function to subtract time for a wrong answer
-function subtractTime() {
-    timeLeft -= 20;
-}
-
-
-
-
 // TO DO - Hide quiz title in html
 
 // TO DO - Generate question/answer HTML code block by looping
 
 // TO DO - Wait for user input, then evaluate answer
-
-// TO DO - Subtract from timer for wrong answer
 
 // TO DO - End quiz at end of timer
 
