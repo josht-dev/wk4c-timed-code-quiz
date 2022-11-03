@@ -18,7 +18,7 @@ WHEN the game is over
 THEN I can save my initials and my score
 */
 
-// DOM TESTING BUTTON - REMOVE LATER
+// DOM TESTING BUTTONS - REMOVE LATER
 const testBtn = document.getElementById("testBtn");
 testBtn.addEventListener("click", function() {
     // testing timer function
@@ -28,6 +28,10 @@ const testBtn2 = document.getElementById("testBtn2");
 testBtn2.addEventListener("click", function() {
     // testing timer subtract function
     subtractTime();
+});
+const testBtn3 = document.getElementById("testBtn3");
+testBtn3.addEventListener("click", function() {
+    toggleVisible("incorrect");
 });
 
 
@@ -63,6 +67,10 @@ function subtractTime() {
     timeLeft -= 20;
 }
 
+// Call this to toggle the visibility of an HTML container
+function toggleVisible(elementId) {
+    document.getElementById(elementId).classList.toggle("hidden");
+}
 
 /* TO DO - Object that stores arrays of question/answer key/value pairs
 ex: obj {
