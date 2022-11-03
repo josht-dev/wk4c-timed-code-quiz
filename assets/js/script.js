@@ -37,7 +37,8 @@ testBtn3.addEventListener("click", function () {
 
 
 // DOM global variables
-let htmlTime = document.getElementById("timer");
+const htmlTime = document.getElementById("timer");
+const htmlScoreList = document.getElementById("scoreList");
 
 // JS global variables
 let timeLeft = 60;
@@ -114,7 +115,8 @@ if (localStorage.getItem("localHighScores") !== null) {
 } else {
     console.log("Was null");
     // If no scores existed, create empty highScores obj
-    const highScores = {};
+    //const highScores = {};
+    localStorage.setItem("highScores", JSON.stringify(tempHighScores));
 }
 
 // Update local storage with high scores
@@ -125,6 +127,20 @@ function updateLocalScores() {
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
+// Update HTML with high scores data
+function updateHtmlHighScores(obj) {
+    // Loop through obj, adding each key/value pair to an html li element
+    for (const key in obj) {
+        let li = document.createElement("li");
+        li.setAttribute("class", "score");
+        li.textContent = `${key} ${obj[key]}`;
+        // Add the li to the html
+        htmlScoreList.appendChild(li);
+    }
+}
+
+updateHtmlHighScores(tempHighScores);
+//updateHtmlHighScores(highScores);
 
 // TO DO - Hide quiz title in html
 
