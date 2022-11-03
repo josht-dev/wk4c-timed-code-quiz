@@ -20,17 +20,17 @@ THEN I can save my initials and my score
 
 // DOM TESTING BUTTONS - REMOVE LATER
 const testBtn = document.getElementById("testBtn");
-testBtn.addEventListener("click", function() {
+testBtn.addEventListener("click", function () {
     // testing timer function
     countDown();
 });
 const testBtn2 = document.getElementById("testBtn2");
-testBtn2.addEventListener("click", function() {
+testBtn2.addEventListener("click", function () {
     // testing timer subtract function
     subtractTime();
 });
 const testBtn3 = document.getElementById("testBtn3");
-testBtn3.addEventListener("click", function() {
+testBtn3.addEventListener("click", function () {
     toggleVisible("incorrect");
 });
 
@@ -47,11 +47,11 @@ let timeLeft = 60;
 // Timer code block
 function countDown() {
     // Time user starts with to finish quiz
-    
+
     htmlTime.textContent = timeLeft;
 
     // Countdown timer function
-    let timeInterval = setInterval(function() {
+    let timeInterval = setInterval(function () {
         timeLeft--;
         htmlTime.textContent = timeLeft;
 
@@ -67,7 +67,8 @@ function subtractTime() {
     timeLeft -= 20;
 }
 
-// Call this to toggle the visibility of an HTML container
+/* Call this with an html element's id to toggle the 
+visibility of an HTML container*/
 function toggleVisible(elementId) {
     document.getElementById(elementId).classList.toggle("hidden");
 }
@@ -95,12 +96,35 @@ array [
 ]
 */
 
-/* TO DO - Locally store high scores...obj again?
-ex: obj {
-    "initials": 42,
-    "initials": 0,
+/* Obj to hold high scores, user initials will 
+be the key with their score as the value*/
+
+//TESTING VARIABLE
+const tempHighScores = {
+    // REMOVE LATER - test data
+    JV: 21,
+    JAT: 99,
+    JWH: 49
+};
+
+// Check local storage for existing high scores and load them
+if (localStorage.getItem("localHighScores") !== null) {
+    console.log("local data present");
+    const highScores = JSON.parse(localStorage.getItem("highScores"));
+} else {
+    console.log("Was null");
+    // If no scores existed, create empty highScores obj
+    const highScores = {};
 }
-*/
+
+// Update local storage with high scores
+function updateLocalScores() {
+    // Remove old data from local storage
+    localStorage.removeItem("highScores");
+    // Add current data to local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
 
 // TO DO - Hide quiz title in html
 
