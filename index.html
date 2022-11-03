@@ -33,15 +33,25 @@
     <!-- Container holding quiz (question, answers, right/wrong) -->
     <section id="container-quiz">
         <!-- TO DO - Container holding question -->
-        <article>
+        <article id="container-question">
             <p>This is a test question. Testing out the CSS to style the real questions that will be used later. It needs to be longer than expected to anticipate more in-depth questions and possibly code segments...</p>
         </article>
         <!-- Container holding 4 possible answers -->
         <article>
-            <span class="answer" data-answer="false">A: This is the answer to A.</span>
-            <span class="answer" data-answer="false">B: This is B and is a little longer to try and anticipate code segments and what not...</span>
-            <span class="answer" data-answer="true">C: It's always C....</span>
-            <span class="answer" data-answer="false">D: The all of the above answer..... </span>
+            <ol>
+                <li>
+                    <p class="answer" data-answer="false">A: This is the answer to A.</p>
+                </li>
+                <li>
+                    <p class="answer" data-answer="false">B: This is B and is a little longer to try and anticipate code segments and what not...testtesttesttesttesttesttest</p>
+                </li>
+                <li>
+                    <p class="answer" data-answer="true">C: It's always C....</p>
+                </li>
+                <li>
+                    <p class="answer" data-answer="false">D: The all of the above answer..... </p>
+                </li>
+            </ol>
         </article>
         <!-- Divs indicating right or wrong answer -->
         <div class="correctYesNo hidden" id="correct">Correct!</div>

@@ -76,8 +76,10 @@ header h2 {
 }
 
 #container-quiz article {
-    height: 5rem;
+    height: fit-content;
+    min-height: 8rem;
     margin: 1rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     background-color: var(--color-primary-light);
@@ -85,11 +87,15 @@ header h2 {
 }
 
 /* TO DO - Quiz center question container */
-
+#container-question p {
+    text-align: center;
+}
 
 /* TO DO - Quiz center multiple answer container */
 .answer {
-    
+    padding: 0.25rem;
+    margin: 0.5rem 0.15rem;
+    border: 1px solid #fff;
 }
 
 /* TO DO - Quiz correct/incorrect container */
