@@ -104,6 +104,7 @@ visibility of an HTML container*/
 function toggleVisible(elementId) {
     document.getElementById(elementId).classList.toggle("hidden");
 }
+
 // TO DO - UPDATE FUNCTION TO WORK WHEN NO DATA PRESENT AT START
 // Generate current question/answer HTML code block
 function nextQuestion() {
@@ -131,11 +132,16 @@ function nextQuestion() {
                 qP.innerText = obj[key];
                 
                 //console.log(htmlQuestionContainer.firstElementChild);
-
-                htmlQuestionContainer.replaceChild(qP ,htmlQuestionContainer.firstElementChild);
+                // Check for existing question html
+                if (htmlQuestionContainer.hasChildNodes()) {
+                    htmlQuestionContainer.appendChild(qP);
+                } else {
+                    htmlQuestionContainer.replaceChild(qP ,htmlQuestionContainer.firstElementChild);
+                }
+                
                 break;
             case "a":
-                // Check if this is the correct answer
+                // TO DO - Check if this is the correct answer
                 //let dataAttr = (key === correctAnswer) ? "true" : "false";
                 // Generate answer html
                 const li = document.createElement("li");
@@ -183,21 +189,6 @@ function updateLocalScores() {
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-// Update HTML with high scores data
-function updateHtmlHighScores(obj) {
-    // Loop through obj, adding each key/value pair to an html li element
-    for (const key in obj) {
-        let li = document.createElement("li");
-        li.setAttribute("class", "score");
-        li.textContent = `${key} ${obj[key]}`;
-        // Add the li to the html
-        htmlScoreList.appendChild(li);
-    }
-}
-
-updateHtmlHighScores(tempHighScores);
-//updateHtmlHighScores(highScores);
-
 // TO DO - Hide quiz title in html
 
 // TO DO - Wait for user input, then evaluate answer
@@ -210,4 +201,19 @@ updateHtmlHighScores(tempHighScores);
 
 // TO DO - Check for high score
 
-// TO DO - Generate HTML for high score list
+// TO DO - NEEDS TESTING FOR PROD AND DYNAMICALLY UPDATE WHEN NEW SCORES ADDED
+// Update HTML with high scores data
+function updateHtmlHighScores(obj) {
+    // Loop through obj, adding each key/value pair to an html li element
+    for (const key in obj) {
+        let li = document.createElement("li");
+        li.setAttribute("class", "score");
+        li.textContent = `${key} ${obj[key]}`;
+        // Add the li to the html
+        htmlScoreList.appendChild(li);
+    }
+}
+
+
+updateHtmlHighScores(tempHighScores);
+//updateHtmlHighScores(highScores);
