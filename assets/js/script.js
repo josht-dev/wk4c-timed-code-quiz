@@ -73,6 +73,9 @@ const quiz = [
 ];
 // Variable to hold the next quiz index
 let nextQuizQuestion = 0;
+/* Obj to hold high scores, user initials will 
+be the key with their score as the value*/
+let highScores = {};
 
 // Functions used for this page
 // Timer code block
@@ -159,19 +162,16 @@ function nextQuestion() {
 //TEMP - adds intial testing data from function
 nextQuestion();
 
-/* Obj to hold high scores, user initials will 
-be the key with their score as the value*/
 
 
-// NOT WORKING AS INTENDED********************************
 // Check local storage for existing high scores and load them
-if (localStorage.getItem("localHighScores") !== null) {
+if (localStorage.getItem("highScores") !== null) {
     console.log("local data present");
-    const highScores = JSON.parse(localStorage.getItem("highScores"));
+    highScores = JSON.parse(localStorage.getItem("highScores"));
 } else {
     console.log("Was null");
-    // If no scores existed, create empty highScores obj
-    //const highScores = {};
+    
+    // Set to temp test data if no data present *****TESTING ONLY**********
     localStorage.setItem("highScores", JSON.stringify(tempHighScores));
 }
 
