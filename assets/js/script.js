@@ -18,7 +18,7 @@ WHEN the game is over
 THEN I can save my initials and my score
 */
 
-//TESTING VARIABLE
+//TESTING VARIABLES!!!!!!!!!!!!!!!!!
 const tempHighScores = {
     // REMOVE LATER - test data
     JV: 21,
@@ -43,15 +43,16 @@ testBtn3.addEventListener("click", function () {
 
 
 
-// DOM global variables
+// ****** DOM global variables ******
 const htmlTime = document.getElementById("timer");
 const htmlScoreList = document.getElementById("scoreList");
 const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
 
-// JS global variables
+//  ****** JS global variables ******
 let timeLeft = 60;
+//UPDATE QUIZ OBJ WITH REAL QUIZ DATA!!!!!!!!!!!!!!!!!!
 //Object that stores arrays of question/answer key/value pairs
 const quiz = [
     {
@@ -77,7 +78,7 @@ let nextQuizQuestion = 0;
 be the key with their score as the value*/
 let highScores = {};
 
-// Functions used for this page
+// ****** Functions used for this page ******
 // Timer code block
 function countDown() {
     // Time user starts with to finish quiz
@@ -88,7 +89,6 @@ function countDown() {
     let timeInterval = setInterval(function () {
         timeLeft--;
         htmlTime.textContent = timeLeft;
-
         // Check if time ran out
         if (!timeLeft) {
             clearInterval(timeInterval);
@@ -104,16 +104,12 @@ visibility of an HTML container*/
 function toggleVisible(elementId) {
     document.getElementById(elementId).classList.toggle("hidden");
 }
-
-// TO DO - UPDATE FUNCTION TO WORK WHEN NO DATA PRESENT AT START
 // Generate current question/answer HTML code block
 function nextQuestion() {
     // Grab the question obj from the quiz array
     const obj = quiz[nextQuizQuestion];
-
     // Store obj key of correct answer
     const correctAnswer = obj.correct;
-    //console.log(correctAnswer);
 
     // Remove any existing answer html li elements
     while (htmlAnswerList[0]) {    
@@ -122,16 +118,11 @@ function nextQuestion() {
 
     // Loop through the obj keys to generate question/answer html
     for (const key in obj) {
-
-        //console.log(key[0]);
-
         switch (key[0]) {
             case "q":
                 // Generate question html
                 const qP = document.createElement("p");
                 qP.innerText = obj[key];
-                
-                //console.log(htmlQuestionContainer.firstElementChild);
                 // Check for existing question html
                 if (htmlQuestionContainer.hasChildNodes()) {
                     htmlQuestionContainer.appendChild(qP);
@@ -141,8 +132,6 @@ function nextQuestion() {
                 
                 break;
             case "a":
-                // TO DO - Check if this is the correct answer
-                //let dataAttr = (key === correctAnswer) ? "true" : "false";
                 // Generate answer html
                 const li = document.createElement("li");
                 const aP = document.createElement("p");
@@ -150,36 +139,19 @@ function nextQuestion() {
                 aP.setAttribute("class", "answer");
                 aP.setAttribute("data-answer", key);
                 li.appendChild(aP);
-                //console.log(li);
                 htmlAnswerContainer.firstElementChild.appendChild(li);
                 break;
             default:
                 break;
         }
     }
-
     // Increment the nextQuizQuestion for next run
     nextQuizQuestion++;
 }
 
-//console.log(htmlAnswerList);
-//console.log("current test");
-//console.log(htmlAnswerList[3]);
-//TEMP - adds intial testing data from function
-nextQuestion();
+//// ****** STILL WORKING ON THE CODE BELOW ******
 
-
-
-// Check local storage for existing high scores and load them
-if (localStorage.getItem("highScores") !== null) {
-    console.log("local data present");
-    highScores = JSON.parse(localStorage.getItem("highScores"));
-} else {
-    console.log("Was null");
-    
-    // Set to temp test data if no data present *****TESTING ONLY**********
-    localStorage.setItem("highScores", JSON.stringify(tempHighScores));
-}
+// TO DO - Check for this is the correct answer
 
 // Update local storage with high scores
 function updateLocalScores() {
@@ -214,6 +186,22 @@ function updateHtmlHighScores(obj) {
     }
 }
 
+
+
+// ****** RUN CODE ******
+
+
+//TEMP - adds intial testing data from function
+nextQuestion();
+
+
+// Check local storage for existing high scores and load them
+if (localStorage.getItem("highScores") !== null) {
+    highScores = JSON.parse(localStorage.getItem("highScores"));
+} else {
+    // Set to temp test data if no data present *****TESTING ONLY**********
+    localStorage.setItem("highScores", JSON.stringify(tempHighScores));
+}
 
 updateHtmlHighScores(tempHighScores);
 //updateHtmlHighScores(highScores);
