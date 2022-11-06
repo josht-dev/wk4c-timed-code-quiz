@@ -78,6 +78,7 @@ header h2 {
 #container-quiz article {
     height: fit-content;
     min-height: 8rem;
+    width: 100%;
     margin: 1rem;
     padding: 0.5rem;
     display: flex;
@@ -88,7 +89,7 @@ header h2 {
 
 /* TO DO - Quiz center question container */
 #container-question p {
-    text-align: center;
+    margin: auto;
 }
 
 /* TO DO - Quiz center multiple answer container */
