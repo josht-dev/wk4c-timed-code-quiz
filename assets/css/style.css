@@ -64,15 +64,35 @@ header h2 {
 }
 
 /* TO DO - Quiz center title */
-
-/* TO DO - Center Container that holds title and quiz data */
-#container-quiz {
+.container {
     width: 45rem;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#quiz-title {
+    background-color: var(--color-primary-light);
+    color: var(--color-on-primary-light);
+    height: 24rem;
+    padding: 0.5rem;
+}
+
+h1 {
+    font-size: xx-large;
+    padding: 2.5rem;
+}
+
+#start-quiz-btn {
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+/* TO DO - Center Container that holds title and quiz data */
+#container-quiz {
+     
 }
 
 #container-quiz article {

@@ -171,9 +171,16 @@ function nextQuestion() {
 
 //// ****** STILL WORKING ON THE CODE BELOW ******
 
+const startQuizBtn = document.getElementById("start-quiz-btn");
+startQuizBtn.addEventListener("click", function() {
+    // Start the quiz, display the first question, start the timer
+    toggleVisible("quiz-title");
+    toggleVisible("container-quiz");
+    countDown();
+});
 
 
-// TO DO - Check for this is the correct answerkey
+// TO DO - Check for this is the correct answer key
 function answerCheck(userAnswer) {
     // get question index
     let questionIndex = nextQuizQuestion - 1;
