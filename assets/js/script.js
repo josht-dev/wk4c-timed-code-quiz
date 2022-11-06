@@ -49,6 +49,8 @@ const htmlScoreList = document.getElementById("scoreList");
 const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
+//const htmlAnswerCorrect = document.getElementById("correct");
+//const htmlAnswerIncorrect = document.getElementById("incorrect");
 
 //  ****** JS global variables ******
 let timeLeft = 60;
@@ -97,13 +99,20 @@ function countDown() {
 }
 // Call this function to subtract time for a wrong answer
 function subtractTime() {
-    timeLeft -= 20;
+    timeLeft -= 5;
 }
 /* Call this with an html element's id to toggle the 
 visibility of an HTML container*/
 function toggleVisible(elementId) {
     document.getElementById(elementId).classList.toggle("hidden");
 }
+
+/*
+function test() {
+    console.log("test event");
+}
+*/
+
 // Generate current question/answer HTML code block
 function nextQuestion() {
     // Grab the question obj from the quiz array
@@ -124,10 +133,15 @@ function nextQuestion() {
                 const qP = document.createElement("p");
                 qP.innerText = obj[key];
                 // Check for existing question html
-                if (htmlQuestionContainer.hasChildNodes()) {
+                //console.log(htmlQuestionContainer.childElementCount);
+                if (!htmlQuestionContainer.childElementCount) {
                     htmlQuestionContainer.appendChild(qP);
+                    //console.log("if triggered");
                 } else {
-                    htmlQuestionContainer.replaceChild(qP ,htmlQuestionContainer.firstElementChild);
+                    //console.log(htmlQuestionContainer.firstElementChild);
+                    //console.log("else triggered");
+                    htmlQuestionContainer.replaceChild(qP, htmlQuestionContainer.lastChild);
+                    
                 }
                 
                 break;
@@ -139,6 +153,12 @@ function nextQuestion() {
                 aP.setAttribute("class", "answer");
                 aP.setAttribute("data-answer", key);
                 li.appendChild(aP);
+                li.onclick = function() {
+                    console.log("test:"); console.log(this.firstElementChild.getAttribute("data-answer"));
+                    answerCheck(this.firstElementChild.getAttribute("data-answer"));
+                
+                };
+
                 htmlAnswerContainer.firstElementChild.appendChild(li);
                 break;
             default:
@@ -151,7 +171,29 @@ function nextQuestion() {
 
 //// ****** STILL WORKING ON THE CODE BELOW ******
 
-// TO DO - Check for this is the correct answer
+
+
+// TO DO - Check for this is the correct answerkey
+function answerCheck(userAnswer) {
+    // get question index
+    let questionIndex = nextQuizQuestion - 1;
+    // get correct answer
+    let correctAnswer = quiz[questionIndex].correct;
+    // compare user answer to correct answer
+    if (userAnswer === correctAnswer) {
+        // Display to user that they got it right
+        toggleVisible("correct");
+        // Load next question
+        nextQuestion()
+    } else {
+        // Display to user that they got it wrong
+        toggleVisible("incorrect");
+        // Penalize User for incorrect answer
+        subtractTime();
+        // Load next question
+        nextQuestion();
+    }
+}
 
 // Update local storage with high scores
 function updateLocalScores() {
@@ -161,9 +203,16 @@ function updateLocalScores() {
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
+// TO DO - Add next button after user answers to proceed?
+
 // TO DO - Hide quiz title in html
 
 // TO DO - Wait for user input, then evaluate answer
+
+// Answer html needs to activate function when clicked
+
+
+
 
 // TO DO - End quiz at end of timer
 
