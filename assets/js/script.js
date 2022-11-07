@@ -112,9 +112,18 @@ function test() {
     console.log("test event");
 }
 */
-
+console.log(quiz.length);
 // Generate current question/answer HTML code block
 function nextQuestion() {
+    // check if there are no other question and stop if so
+    if (nextQuizQuestion === quiz.length) {
+        toggleVisible("container-quiz");
+        toggleVisible("container-gameOver");
+        // Stop function here
+        return;
+    }
+
+
     // Grab the question obj from the quiz array
     const obj = quiz[nextQuizQuestion];
     // Store obj key of correct answer
