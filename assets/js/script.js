@@ -179,6 +179,10 @@ const submitScoreBtn = document.getElementById("submit-score");
 submitScoreBtn.addEventListener("click", function () {
     // Update highScores obj with player initials and score
     const playerInitial = document.getElementById("input-score").value;
+    // If initial input was blank, do nothing
+    if (!playerInitial) {
+        return;
+    }
     highScores[playerInitial] = playerScore;
     // Generate HTML for new score
     globalFunctions.updateHtmlHighScores(highScores);
