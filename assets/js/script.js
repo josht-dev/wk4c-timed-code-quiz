@@ -1,60 +1,12 @@
-/*
----------- User Story ----------
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-
----------- Acceptance Criteria ----------
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-*/
-
-//TESTING VARIABLES!!!!!!!!!!!!!!!!!
-const tempHighScores = {
-    // REMOVE LATER - test data
-    JV: 21,
-    JAT: 99,
-    JWH: 49
-};
-// DOM TESTING BUTTONS - REMOVE LATER
-const testBtn = document.getElementById("testBtn");
-testBtn.addEventListener("click", function () {
-    // testing timer function
-    countDown();
-});
-const testBtn2 = document.getElementById("testBtn2");
-testBtn2.addEventListener("click", function () {
-    // testing timer subtract function
-    subtractTime();
-});
-const testBtn3 = document.getElementById("testBtn3");
-testBtn3.addEventListener("click", function () {
-    toggleVisible("incorrect");
-});
-
-
-
 // ****** DOM global variables ******
 const htmlTime = document.getElementById("timer");
-const htmlScoreList = document.getElementById("scoreList");
 const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
-//const htmlAnswerCorrect = document.getElementById("correct");
-//const htmlAnswerIncorrect = document.getElementById("incorrect");
+const htmlScoreList = document.getElementById("scoreList");
 
 //  ****** JS global variables ******
 let timeLeft = 60;
-//UPDATE QUIZ OBJ WITH REAL QUIZ DATA!!!!!!!!!!!!!!!!!!
 //Object that stores arrays of question/answer key/value pairs
 const quiz = [
     {
@@ -81,239 +33,193 @@ let playerScore = 0;
 /* Obj to hold high scores, user initials will 
 be the key with their score as the value*/
 let highScores = {};
-
-// ****** Functions used for this page ******
-// Timer code block
-function countDown() {
-    // Time user starts with to finish quiz
-
-    htmlTime.textContent = timeLeft;
-
-    // Countdown timer function
-    let timeInterval = setInterval(function () {
-        timeLeft--;
+// Obj holding global functions
+const globalFunctions = {
+    /* Call this with an html element's id to toggle the 
+    visibility of an HTML container*/
+    toggleVisible: function (elementId) {
+        document.getElementById(elementId).classList.toggle("hidden");
+    },
+    // Timer code block
+    countDown: function () {
+        // Time user starts with to finish quiz
         htmlTime.textContent = timeLeft;
-        // Check if time ran out
-        if (!timeLeft) {
-            clearInterval(timeInterval);
+        // Countdown timer function
+        let timeInterval = setInterval(function () {
+            timeLeft--;
+            htmlTime.textContent = timeLeft;
+            // Check if time ran out
+            if (!timeLeft) {
+                clearInterval(timeInterval);
+            }
+        }, 1000);
+    },
+    // Call this function to subtract time for a wrong answer
+    subtractTime: function () {
+        timeLeft -= 5;
+    },
+    // Generate current question/answer HTML code block
+    nextQuestion: function () {
+        // check if there are no other question and stop if so
+        if (nextQuizQuestion === quiz.length) {
+            // Stop timer and add time to score
+            playerScore += timeLeft;
+            timeLeft = 1;
+            // Generate html span to show player score
+            document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
+            // Change visible content
+            globalFunctions.toggleVisible("container-quiz");
+            globalFunctions.toggleVisible("container-gameOver");
+            // Stop function here
+            return;
         }
-    }, 1000);
-}
-// Call this function to subtract time for a wrong answer
-function subtractTime() {
-    timeLeft -= 5;
-}
-/* Call this with an html element's id to toggle the 
-visibility of an HTML container*/
-function toggleVisible(elementId) {
-    document.getElementById(elementId).classList.toggle("hidden");
-}
-
-/*
-function test() {
-    console.log("test event");
-}
-*/
-console.log(quiz.length);
-// Generate current question/answer HTML code block
-function nextQuestion() {
-    // check if there are no other question and stop if so
-    if (nextQuizQuestion === quiz.length) {
-        // Stop timer and add time to score
-        playerScore += timeLeft;
-        timeLeft = 1;
-        // Generate html span to show player score
-        document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
-        // Change visible content
-        toggleVisible("container-quiz");
-        toggleVisible("container-gameOver");
-        // Stop function here
-        return;
-    }
-
-
-    // Grab the question obj from the quiz array
-    const obj = quiz[nextQuizQuestion];
-    // Store obj key of correct answer
-    const correctAnswer = obj.correct;
-
-    // Remove any existing answer html li elements
-    while (htmlAnswerList[0]) {    
-        htmlAnswerList[0].remove();
-    }
-
-    // Loop through the obj keys to generate question/answer html
-    for (const key in obj) {
-        switch (key[0]) {
-            case "q":
-                // Generate question html
-                const qP = document.createElement("p");
-                qP.innerText = obj[key];
-                // Check for existing question html
-                //console.log(htmlQuestionContainer.childElementCount);
-                if (!htmlQuestionContainer.childElementCount) {
-                    htmlQuestionContainer.appendChild(qP);
-                    //console.log("if triggered");
-                } else {
-                    //console.log(htmlQuestionContainer.firstElementChild);
-                    //console.log("else triggered");
-                    htmlQuestionContainer.replaceChild(qP, htmlQuestionContainer.lastChild);
-                    
-                }
-                
-                break;
-            case "a":
-                // Generate answer html
-                const li = document.createElement("li");
-                const aP = document.createElement("p");
-                aP.textContent = obj[key];
-                aP.setAttribute("class", "answer");
-                aP.setAttribute("data-answer", key);
-                li.appendChild(aP);
-                li.onclick = function() {
-                    console.log("test:"); console.log(this.firstElementChild.getAttribute("data-answer"));
-                    answerCheck(this.firstElementChild.getAttribute("data-answer"));
-                
-                };
-
-                htmlAnswerContainer.firstElementChild.appendChild(li);
-                break;
-            default:
-                break;
+        // Grab the question obj from the quiz array
+        const obj = quiz[nextQuizQuestion];
+        // Store obj key of correct answer
+        const correctAnswer = obj.correct;
+        // Remove any existing answer html li elements
+        while (htmlAnswerList[0]) {
+            htmlAnswerList[0].remove();
         }
+        // Loop through the obj keys to generate question/answer html
+        for (const key in obj) {
+            switch (key[0]) {
+                case "q":
+                    // Generate question html
+                    const qP = document.createElement("p");
+                    qP.innerText = obj[key];
+                    // Check for existing question html
+                    if (!htmlQuestionContainer.childElementCount) {
+                        htmlQuestionContainer.appendChild(qP);
+                    } else {
+                        htmlQuestionContainer.replaceChild(qP, htmlQuestionContainer.lastChild);
+                    }
+                    break;
+                case "a":
+                    // Generate answer html
+                    const li = document.createElement("li");
+                    const aP = document.createElement("p");
+                    aP.textContent = obj[key];
+                    aP.setAttribute("class", "answer");
+                    aP.setAttribute("data-answer", key);
+                    li.appendChild(aP);
+                    li.onclick = function () {
+                        globalFunctions.answerCheck(this.firstElementChild.getAttribute("data-answer"));
+                    };
+                    htmlAnswerContainer.firstElementChild.appendChild(li);
+                    break;
+                default:
+                    break;
+            }
+        }
+        // Increment the nextQuizQuestion for next run
+        nextQuizQuestion++;
+    },
+    // Check for this is the correct answer key
+    answerCheck: function (userAnswer) {
+        // get question index
+        let questionIndex = nextQuizQuestion - 1;
+        // get correct answer
+        let correctAnswer = quiz[questionIndex].correct;
+        // compare user answer to correct answer
+        if (userAnswer === correctAnswer) {
+            // Display to user that they got it right
+            globalFunctions.toggleVisible("correct");
+            // Increase player score
+            playerScore += 5;
+            // Load next question
+            globalFunctions.nextQuestion()
+        } else {
+            // Display to user that they got it wrong
+            globalFunctions.toggleVisible("incorrect");
+            // Penalize User for incorrect answer
+            globalFunctions.subtractTime();
+            // Load next question
+            globalFunctions.nextQuestion();
+        }
+    },
+    // Update HTML with high scores data
+    updateHtmlHighScores: function (obj) {
+        // Remove any existing answer html li elements
+        while (htmlScoreList.firstChild) {
+            htmlScoreList.firstChild.remove();
+        }
+        // Loop through obj, adding each key/value pair to an html li element
+        for (const key in obj) {
+            let li = document.createElement("li");
+            li.setAttribute("class", "score");
+            li.textContent = `${key} ${obj[key]}`;
+            // Add the li to the html
+            htmlScoreList.appendChild(li);
+        }
+    },
+    // Update local storage with high scores
+    updateLocalScores: function () {
+        // Remove old data from local storage
+        localStorage.removeItem("highScores");
+        // Add current data to local storage
+        localStorage.setItem("highScores", JSON.stringify(highScores));
     }
-    // Increment the nextQuizQuestion for next run
-    nextQuizQuestion++;
 }
 
-//// ****** STILL WORKING ON THE CODE BELOW ******
-
+// ****** DOM Buttons code ******
+// Button to start the quiz
 const startQuizBtn = document.getElementById("start-quiz-btn");
-startQuizBtn.addEventListener("click", function() {
+startQuizBtn.addEventListener("click", function () {
     // Start the quiz, display the first question, start the timer
-    toggleVisible("quiz-title");
-    toggleVisible("container-quiz");
-    toggleVisible("view-highscores");
-    countDown();
+    globalFunctions.toggleVisible("quiz-title");
+    globalFunctions.toggleVisible("container-quiz");
+    globalFunctions.toggleVisible("view-highscores");
+    // Adds initial question and starts countdown
+    globalFunctions.nextQuestion();
+    globalFunctions.countDown();
 });
-
-
-// TO DO - Check for this is the correct answer key
-function answerCheck(userAnswer) {
-    // get question index
-    let questionIndex = nextQuizQuestion - 1;
-    // get correct answer
-    let correctAnswer = quiz[questionIndex].correct;
-    // compare user answer to correct answer
-    if (userAnswer === correctAnswer) {
-        // Display to user that they got it right
-        toggleVisible("correct");
-        // Increase player score
-        playerScore += 5;
-        // Load next question
-        nextQuestion()
-    } else {
-        // Display to user that they got it wrong
-        toggleVisible("incorrect");
-        // Penalize User for incorrect answer
-        subtractTime();
-        // Load next question
-        nextQuestion();
-    }
-}
-
-// TO DO - End quiz at end of timer
-
-// TO DO - End quiz when all questions answered
-
-// TO DO - NEEDS TESTING FOR PROD AND DYNAMICALLY UPDATE WHEN NEW SCORES ADDED
-// Update HTML with high scores data
-function updateHtmlHighScores(obj) {
-    // Remove any existing answer html li elements
-    while (htmlScoreList.firstChild) {    
-        htmlScoreList.firstChild.remove();
-    }
-    // Loop through obj, adding each key/value pair to an html li element
-    for (const key in obj) {
-        let li = document.createElement("li");
-        li.setAttribute("class", "score");
-        li.textContent = `${key} ${obj[key]}`;
-        // Add the li to the html
-        htmlScoreList.appendChild(li);
-    }
-}
-
-// Update local storage with high scores
-function updateLocalScores() {
-    // Remove old data from local storage
-    localStorage.removeItem("highScores");
-    // Add current data to local storage
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-}
-
-
 // High score submit btn
 const submitScoreBtn = document.getElementById("submit-score");
-submitScoreBtn.addEventListener("click", function() {
+submitScoreBtn.addEventListener("click", function () {
     // Update highScores obj with player initials and score
     const playerInitial = document.getElementById("input-score").value;
     highScores[playerInitial] = playerScore;
     // Generate HTML for new score
-    updateHtmlHighScores(highScores);
-    /*
-    let li = document.createElement("li");
-    li.setAttribute("class", "score");
-    li.textContent = `${playerInitial} ${highScores[playerInitial]}`;
-    // Add the li to the html
-    htmlScoreList.appendChild(li);
-    */
+    globalFunctions.updateHtmlHighScores(highScores);
     // Update localStorage
-    updateLocalScores();
+    globalFunctions.updateLocalScores();
     // Move to Highscores content
-    toggleVisible("container-gameOver");
-    toggleVisible("container-scoreList");
+    globalFunctions.toggleVisible("container-gameOver");
+    globalFunctions.toggleVisible("container-scoreList");
 });
-
 // Clear high score btn
 const clearScoresBtn = document.getElementById("clear-highscores-btn");
-clearScoresBtn.addEventListener("click", function() {
+clearScoresBtn.addEventListener("click", function () {
     localStorage.removeItem("highScores");
     // Hide scores list and show cleared message
-    toggleVisible("scoreList");
-    toggleVisible("cleared");
+    globalFunctions.toggleVisible("scoreList");
+    globalFunctions.toggleVisible("cleared");
 });
-
 // Start quiz over
 const tryAgainBtn = document.getElementById("try-again");
-tryAgainBtn.addEventListener("click", function() {
+tryAgainBtn.addEventListener("click", function () {
     location.reload();
 });
-
-// See the high scores
+// View the high scores content
 const viewHighscores = document.getElementById("view-highscores");
-viewHighscores.addEventListener("click", function() {
+viewHighscores.addEventListener("click", function () {
     // Toggle section visibilities to show the high score screen
-    toggleVisible("quiz-title");
-    toggleVisible("container-scoreList");
-    toggleVisible("view-highscores");
+    globalFunctions.toggleVisible("quiz-title");
+    globalFunctions.toggleVisible("container-scoreList");
+    globalFunctions.toggleVisible("view-highscores");
+    globalFunctions.updateHtmlHighScores(highScores);
 });
 
-
-
-
-// ****** RUN CODE ******
-
-
-// Adds initial question to hidden content
-nextQuestion();
-
-
+// ****** CODE RAN AT SCRIPT LOAD ******
 // Check local storage for existing high scores and load them
 if (localStorage.getItem("highScores") !== null) {
-    highScores = JSON.parse(localStorage.getItem("highScores"));
+   highScores = JSON.parse(localStorage.getItem("highScores"));
 } else {
-    // Set to temp test data if no data present *****TESTING ONLY**********
-    localStorage.setItem("highScores", JSON.stringify(highScores));
+    // Set to temp test data if no data present
+   localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-updateHtmlHighScores(highScores);
+//// ****** STILL WORKING ON THE CODE BELOW ******
+// TO DO - UPDATE QUIZ OBJ WITH REAL QUIZ DATA!!!!!!!!!!!!!!!!!!
+// TO DO - Get duplicate player initial's working for multiple scores
