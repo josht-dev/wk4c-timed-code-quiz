@@ -2,22 +2,27 @@
 :root {
     /* Page color schema - Generated with the help of 
     the Material UI color tool for accessibility*/
-    --color-primary: #1b5e20;
-    --color-primary-light: #4c8c4a;
-    --color-primary-dark: #003300;
-    --color-on-primary: #fff;
+    --color-primary: #89ad6d;
+    --color-primary-light: #badf9c;
+    --color-primary-dark: #5b7e41;
+    --color-on-primary: #000;
     --color-on-primary-light: #000;
-    --color-secondary: #00838f;
-    --color-secondary-light: #4fb3bf;
-    --color-secondary-dark: #005662;
+    --color-on-primary-dark: #FEFAED;
+    --color-secondary: #000;
+    --color-secondary-light: #64ece5;
+    --color-secondary-dark: #008884;
     --color-on-secondary: #fff;
     --color-on-secondary-light: #000;
-    --color-bg: #fff;
+    --color-on-secondary-dark: #FEFAED;
+    --color-bg: #FEFAED;
     --color-on-bg: #000;
-    --color-surface: #fff;
+    --color-surface: #FEFAED;
     --color-on-surface: #000;
     --color-error: #b00020;
-    --color-on-error: #fff;
+    --color-on-error: #FEFAED;
+    /* Btn styling */
+    --btn-border-radius: 0.25rem;
+    --btn-hover: #d106d1;
 }
 
 /* Universal page styling */
@@ -27,43 +32,44 @@
 
 body {
     width: 100%;
+    background-color: var(--color-bg);
 }
 
-/* TO DO - Right side time tracker   */
+/* Top time tracker  */
 header {
     width: 100%;
-    margin: 5rem 0 2rem 0;
-    padding: 1.5rem;
+    height: 2.75rem;
+    margin-bottom: 5rem;
     background-color: var(--color-primary);
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 12.5rem;
+    position: fixed;
 }
 
 header h2 {
-    width: 4.8rem;
-    margin-right: 5rem;
+    margin-left: 5rem;
     color: var(--color-on-primary);
-    
+    align-self: flex-start;
+    position: fixed;
+    top: 11px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.14rem;
 }
 
 #timer {
     color: var(--color-on-primary);
+    margin-right: 5rem;
+    align-self: flex-end;
+    position: absolute;
+    top: 11px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.14rem;
 }
 
-/* TO DO - Left side high score tracker */
-#container-score-list {
-
-}
-
-#score-list {
-
-}
-
-.score {
-
-}
-
-/* TO DO - Quiz center title */
+/* Quiz center title */
 .container {
     width: 45rem;
     margin: auto;
@@ -74,8 +80,7 @@ header h2 {
 }
 
 #quiz-title {
-    background-color: var(--color-primary-light);
-    color: var(--color-on-primary-light);
+    color: var(--color-on-surface);
     height: 24rem;
     padding: 0.5rem;
 }
@@ -83,16 +88,56 @@ header h2 {
 h1 {
     font-size: xx-large;
     padding: 2.5rem;
+    font-weight: 600;
+}
+
+#quiz-title p {
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 #start-quiz-btn {
+    width: 8.5rem;
+    height: 2.25rem;
     padding: 0.5rem;
-    margin-top: 1.5rem;
+    border-radius: var(--btn-border-radius);
+    background-color: var(--color-primary-dark);
+    color: var(--color-on-primary-dark);
+    font-weight: 600;
 }
 
-/* TO DO - Center Container that holds title and quiz data */
+#start-quiz-btn:hover {
+    border-color: var(--btn-hover);
+}
+
+/* Class used to hide content when not needed */
+.hidden {
+    display: none;
+}
+
+/* High score button */
+#view-highscores {
+    position: absolute;
+    width: 12.5rem;
+    height: 2.25rem;
+    right: 5rem;
+    top: 37.25rem;
+    border: 1px solid #9E9E9E;
+    border-radius: var(--btn-border-radius);
+    background-color: var(--color-bg);
+    color: #9E9E9E;
+}
+
+#view-highscores:hover {
+    border-color: var(--btn-hover);
+    color: var(--color-on-bg);
+}
+
+/* Center Container that holds quiz data */
 #container-quiz {
-     
+     position: relative;
+     top: 5rem;
 }
 
 #container-quiz article {
@@ -103,20 +148,32 @@ h1 {
     padding: 0.5rem;
     display: flex;
     align-items: center;
-    background-color: var(--color-primary-light);
-    color: var(--color-on-primary-light);
 }
 
-/* TO DO - Quiz center question container */
+/* Quiz center question container */
 #container-question p {
     margin: auto;
+    color: var(--color-on-bg);
+    line-height: 1.5rem;
+    text-align: center;
+    font-weight: 400;
 }
 
-/* TO DO - Quiz center multiple answer container */
+/* Quiz center multiple answer container */
 .answer {
-    padding: 0.25rem;
+    padding: 0.75rem;
     margin: 0.5rem 0.15rem;
-    border: 1px solid #fff;
+    background-color: var(--color-primary-dark);
+    color: var(--color-on-primary-dark);
+    width: fit-content;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.answer:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-on-primary-light);
 }
 
 /* TO DO - Quiz correct/incorrect container */
@@ -128,16 +185,137 @@ h1 {
     font-weight: bold;
 }
 
-.hidden {
-    display: none;
-}
 
-/* TO DO - Game over container */
+
+/* Game over container */
 #container-gameover {
-
+    min-height: 8rem;
+    position: relative;
+    top: 5rem;
 }
 
-/* TO DO - Game over High score list */
+h3 {
+    font-size: xx-large;
+    padding: 2.5rem;
+    font-weight: 600;
+}
+
+#player-score {
+    font-size: x-large;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#container-gameover div {
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+    width: 14.25rem;
+}
+
+#input-score {
+    height: 2.5rem;
+    width: 60%;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--btn-border-radius);
+    color: var(--color-on-bg);
+    background-color: var(--color-bg);
+    text-align: center;
+    font-size: x-large;
+    line-height: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .15rem;
+    text-transform: uppercase;
+}
+
+#input-score:placeholder-shown {
+    text-align: center;
+    font-size: small;
+    letter-spacing: .05rem;
+}
+
+#submit-score {
+    height: 2.5rem;
+    width: 40%;
+    border-radius: var(--btn-border-radius);
+    background-color: var(--color-primary-dark);
+    color: var(--color-on-primary-dark);
+    font-weight: 600;
+}
+
+#submit-score:hover {
+    border-color: var(--btn-hover);
+}
+
+/* Game over High score list */
+#container-score-list {
+    min-height: 8rem;
+    position: relative;
+    top: 5rem;
+}
+
+#score-list {
+    list-style-type: decimal;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.score {
+    width: 22.5rem;
+    height: 2.75rem;
+    padding: 0 1rem;
+    background-color: var(--color-primary-light);
+    padding-top: .75rem;
+    font-size: x-large;
+    line-height: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .15rem;
+    text-transform: uppercase;
+}
+
+#cleared {
+    font-size: x-large;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#container-score-list div {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    width: 22.5rem;
+}
+
+#container-score-list div button {
+    box-sizing: border-box;
+    height: 3rem;
+    padding: .75rem;
+    border: 1px solid #9E9E9E;
+    border-radius: var(--btn-border-radius);
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+#try-again {
+    width: 40%;
+}
+
+#clear-highscores-btn {
+    width: 60%;
+}
+
+#container-score-list div button:hover {
+    border-color: var(--btn-hover);
+    background-color: var(--color-primary-dark);
+    color: var(--color-on-primary-dark);
+}
 
 /* Responsive CSS for small devices */
 /* TO DO - Tablet size */
