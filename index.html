@@ -11,17 +11,10 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <!-- TESTING ONLY - temp button for testing purposes only-->
-    <button id="testBtn" style="width: 150px; margin: 50px;">startTimer</button>
-    <button id="testBtn2" style="width: 150px; margin: 50px;">minusTime</button>
-    <button id="testBtn3" style="width: 150px; margin: 50px;">toggleVisible</button>
-
-
     <!-- Time tracker -->
     <header>
         <h2>Time: <span id="timer"></span></h2>
     </header>
-    
     <!-- Quiz challenge title -->
     <section id="quiz-title" class="container">
         <h1>Coding Quiz Challenge</h1>
@@ -37,18 +30,7 @@
         <!-- Container holding 4 possible answers -->
         <article id="container-answer">
             <ol>
-                <li>
-                    <p class="answer" data-answer="false">A: This is the answer to A.</p>
-                </li>
-                <li>
-                    <p class="answer" data-answer="false">B: This is B and is a little longer to try and anticipate code segments and what not...testtesttesttesttesttesttest</p>
-                </li>
-                <li>
-                    <p class="answer" data-answer="true">C: It's always C....</p>
-                </li>
-                <li>
-                    <p class="answer" data-answer="false">D: The all of the above answer..... </p>
-                </li>
+                <!-- The <li> elements will be dynamically created with quiz question -->
             </ol>
         </article>
         <!-- Divs indicating right or wrong answer -->
@@ -58,13 +40,14 @@
     <!-- Game over container (score, high score initials input) -->
     <section id="container-gameOver" class="hidden">
         <span id="game-over">All Done!</span>
-        <!-- TEST DATA ONY!!! -->
-        <span id="player-score">Your score is 99</span>
+        <!-- Shows the player score at the end of the quiz -->
+        <span id="player-score"></span>
         <!-- Initials for high score input -->
-        <input type="text" id="input-score" placeholder="Enter Initials" maxlength="3" size="3" required>
+        <!-- TO DO - Add validation for empty initials -->
+        <input type="text" id="input-score" placeholder="Enter Initials" maxlength="3" size="3">
         <button id="submit-score">SUBMIT</button>        
     </section>
-    <!-- TO DO - View highscore -->
+    <!-- TO DO - View high score -->
     <section id="container-scoreList" class="hidden">
         <h2>High Scores</h2>
         <ul id="scoreList" class="">
@@ -73,7 +56,7 @@
         <span id="cleared" class="hidden">Cleared!</span>
         <div>
             <button id="try-again">TRY AGAIN</button>
-        <button id="clear-highscores-btn">CLEAR HIGHSCORES</button>
+        <button id="clear-highscores-btn">CLEAR HIGH SCORES</button>
         </div>
     </section>
     <button id="view-highscores" class="">High Scores</button>
