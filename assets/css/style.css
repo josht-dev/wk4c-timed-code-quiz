@@ -51,11 +51,11 @@ header h2 {
 }
 
 /* TO DO - Left side high score tracker */
-#container-scoreList {
+#container-score-list {
 
 }
 
-#scoreList {
+#score-list {
 
 }
 
@@ -120,7 +120,7 @@ h1 {
 }
 
 /* TO DO - Quiz correct/incorrect container */
-.correctYesNo {
+.correct {
     padding: .5rem;
     border-top: .5rem double var(--color-secondary);
     border-radius: 1rem;
@@ -133,7 +133,7 @@ h1 {
 }
 
 /* TO DO - Game over container */
-#container-gameOver {
+#container-gameover {
 
 }
 

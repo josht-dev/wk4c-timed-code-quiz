@@ -3,7 +3,7 @@ const htmlTime = document.getElementById("timer");
 const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
-const htmlScoreList = document.getElementById("scoreList");
+const htmlScoreList = document.getElementById("score-list");
 
 //  ****** JS global variables ******
 let timeLeft = 60;
@@ -69,7 +69,7 @@ const globalFunctions = {
             document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
             // Change visible content
             globalFunctions.toggleVisible("container-quiz");
-            globalFunctions.toggleVisible("container-gameOver");
+            globalFunctions.toggleVisible("container-gameover");
             // Stop function here
             return;
         }
@@ -185,15 +185,15 @@ submitScoreBtn.addEventListener("click", function () {
     // Update localStorage
     globalFunctions.updateLocalScores();
     // Move to Highscores content
-    globalFunctions.toggleVisible("container-gameOver");
-    globalFunctions.toggleVisible("container-scoreList");
+    globalFunctions.toggleVisible("container-gameover");
+    globalFunctions.toggleVisible("container-score-list");
 });
 // Clear high score btn
 const clearScoresBtn = document.getElementById("clear-highscores-btn");
 clearScoresBtn.addEventListener("click", function () {
     localStorage.removeItem("highScores");
     // Hide scores list and show cleared message
-    globalFunctions.toggleVisible("scoreList");
+    globalFunctions.toggleVisible("score-list");
     globalFunctions.toggleVisible("cleared");
 });
 // Start quiz over
@@ -206,7 +206,7 @@ const viewHighscores = document.getElementById("view-highscores");
 viewHighscores.addEventListener("click", function () {
     // Toggle section visibilities to show the high score screen
     globalFunctions.toggleVisible("quiz-title");
-    globalFunctions.toggleVisible("container-scoreList");
+    globalFunctions.toggleVisible("container-score-list");
     globalFunctions.toggleVisible("view-highscores");
     globalFunctions.updateHtmlHighScores(highScores);
 });
