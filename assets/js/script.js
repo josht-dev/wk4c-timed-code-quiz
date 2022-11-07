@@ -187,6 +187,7 @@ startQuizBtn.addEventListener("click", function() {
     // Start the quiz, display the first question, start the timer
     toggleVisible("quiz-title");
     toggleVisible("container-quiz");
+    toggleVisible("view-highscores");
     countDown();
 });
 
@@ -213,25 +214,9 @@ function answerCheck(userAnswer) {
     }
 }
 
-
-// TO DO - Add next button after user answers to proceed?
-
-// TO DO - Hide quiz title in html
-
-// TO DO - Wait for user input, then evaluate answer
-
-// Answer html needs to activate function when clicked
-
-
-
-
 // TO DO - End quiz at end of timer
 
 // TO DO - End quiz when all questions answered
-
-// TO DO - Generate end of quiz HTML
-
-// TO DO - Check for high score
 
 // TO DO - NEEDS TESTING FOR PROD AND DYNAMICALLY UPDATE WHEN NEW SCORES ADDED
 // Update HTML with high scores data
@@ -295,7 +280,7 @@ tryAgainBtn.addEventListener("click", function() {
 // ****** RUN CODE ******
 
 
-//TEMP - adds intial testing data from function
+// Adds initial question to hidden content
 nextQuestion();
 
 
