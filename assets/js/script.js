@@ -289,6 +289,18 @@ tryAgainBtn.addEventListener("click", function() {
     location.reload();
 });
 
+// See the high scores
+const viewHighscores = document.getElementById("view-highscores");
+viewHighscores.addEventListener("click", function() {
+    // Toggle section visibilities to show the high score screen
+    toggleVisible("quiz-title");
+    toggleVisible("container-scoreList");
+    toggleVisible("view-highscores");
+});
+
+
+
+
 // ****** RUN CODE ******
 
 
