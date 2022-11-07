@@ -76,6 +76,8 @@ const quiz = [
 ];
 // Variable to hold the next quiz index
 let nextQuizQuestion = 0;
+// Variable to hold player score
+let playerScore = 0;
 /* Obj to hold high scores, user initials will 
 be the key with their score as the value*/
 let highScores = {};
@@ -211,13 +213,6 @@ function answerCheck(userAnswer) {
     }
 }
 
-// Update local storage with high scores
-function updateLocalScores() {
-    // Remove old data from local storage
-    localStorage.removeItem("highScores");
-    // Add current data to local storage
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-}
 
 // TO DO - Add next button after user answers to proceed?
 
@@ -251,6 +246,50 @@ function updateHtmlHighScores(obj) {
     }
 }
 
+// Update local storage with high scores
+function updateLocalScores() {
+    // Remove old data from local storage
+    localStorage.removeItem("highScores");
+    // Add current data to local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+
+// High score submit btn
+const submitScoreBtn = document.getElementById("submit-score");
+submitScoreBtn.addEventListener("click", function() {
+    // Update highScores obj with player initials and score
+    const playerInitial = document.getElementById("input-score").value;
+    //highScores[playerInitial] = playerScore;
+    // *********test data**************
+    highScores[playerInitial] = 99;
+    // Generate HTML for new score
+    let li = document.createElement("li");
+    li.setAttribute("class", "score");
+    li.textContent = `${playerInitial} ${highScores[playerInitial]}`;
+    // Add the li to the html
+    htmlScoreList.appendChild(li);
+    // Update localStorage
+    updateLocalScores();
+    // Move to Highscores content
+    toggleVisible("container-gameOver");
+    toggleVisible("container-scoreList");
+});
+
+// Clear high score btn
+const clearScoresBtn = document.getElementById("clear-highscores-btn");
+clearScoresBtn.addEventListener("click", function() {
+    localStorage.removeItem("highScores");
+    // Hide scores list and show cleared message
+    toggleVisible("scoreList");
+    toggleVisible("cleared");
+});
+
+// Start quiz over
+const tryAgainBtn = document.getElementById("try-again");
+tryAgainBtn.addEventListener("click", function() {
+    location.reload();
+});
 
 
 // ****** RUN CODE ******
@@ -265,8 +304,7 @@ if (localStorage.getItem("highScores") !== null) {
     highScores = JSON.parse(localStorage.getItem("highScores"));
 } else {
     // Set to temp test data if no data present *****TESTING ONLY**********
-    localStorage.setItem("highScores", JSON.stringify(tempHighScores));
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-updateHtmlHighScores(tempHighScores);
-//updateHtmlHighScores(highScores);
+updateHtmlHighScores(highScores);

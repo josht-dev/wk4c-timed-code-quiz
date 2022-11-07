@@ -55,25 +55,25 @@
         <div class="correctYesNo hidden" id="correct">Correct!</div>
         <div class="correctYesNo hidden" id="incorrect">Incorrect!!</div>
     </section>
-    <!-- TO DO - Game over container (score, high score initials input) -->
+    <!-- Game over container (score, high score initials input) -->
     <section id="container-gameOver" class="hidden">
         <span id="game-over">All Done!</span>
         <!-- TEST DATA ONY!!! -->
         <span id="player-score">Your score is 99</span>
-        <!-- TO DO - Initials for high score input -->
-        <input type="text" name="score" placeholder="Enter Initials" size="3" required>
+        <!-- Initials for high score input -->
+        <input type="text" id="input-score" placeholder="Enter Initials" maxlength="3" size="3" required>
         <button id="submit-score">SUBMIT</button>        
     </section>
     <!-- TO DO - View highscore -->
     <section id="container-scoreList" class="hidden">
         <h2>High Scores</h2>
         <ul id="scoreList" class="">
-            <!-- TO DO - Score data from local host dynamically generated -->
+            <!-- Score data from local host dynamically generated -->
         </ul>
-        <span class="hidden">Cleared!</span>
+        <span id="cleared" class="hidden">Cleared!</span>
         <div>
             <button id="try-again">TRY AGAIN</button>
-        <button class="clear-highscores-btn">CLEAR HIGHSCORES</button>
+        <button id="clear-highscores-btn">CLEAR HIGHSCORES</button>
         </div>
     </section>
     <button id="view-highscores" class="">High Scores</button>
