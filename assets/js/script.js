@@ -119,6 +119,12 @@ console.log(quiz.length);
 function nextQuestion() {
     // check if there are no other question and stop if so
     if (nextQuizQuestion === quiz.length) {
+        // Stop timer and add time to score
+        playerScore += timeLeft;
+        timeLeft = 1;
+        // Generate html span to show player score
+        document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
+        // Change visible content
         toggleVisible("container-quiz");
         toggleVisible("container-gameOver");
         // Stop function here
@@ -202,6 +208,8 @@ function answerCheck(userAnswer) {
     if (userAnswer === correctAnswer) {
         // Display to user that they got it right
         toggleVisible("correct");
+        // Increase player score
+        playerScore += 5;
         // Load next question
         nextQuestion()
     } else {
@@ -221,6 +229,10 @@ function answerCheck(userAnswer) {
 // TO DO - NEEDS TESTING FOR PROD AND DYNAMICALLY UPDATE WHEN NEW SCORES ADDED
 // Update HTML with high scores data
 function updateHtmlHighScores(obj) {
+    // Remove any existing answer html li elements
+    while (htmlScoreList.firstChild) {    
+        htmlScoreList.firstChild.remove();
+    }
     // Loop through obj, adding each key/value pair to an html li element
     for (const key in obj) {
         let li = document.createElement("li");
@@ -245,15 +257,16 @@ const submitScoreBtn = document.getElementById("submit-score");
 submitScoreBtn.addEventListener("click", function() {
     // Update highScores obj with player initials and score
     const playerInitial = document.getElementById("input-score").value;
-    //highScores[playerInitial] = playerScore;
-    // *********test data**************
-    highScores[playerInitial] = 99;
+    highScores[playerInitial] = playerScore;
     // Generate HTML for new score
+    updateHtmlHighScores(highScores);
+    /*
     let li = document.createElement("li");
     li.setAttribute("class", "score");
     li.textContent = `${playerInitial} ${highScores[playerInitial]}`;
     // Add the li to the html
     htmlScoreList.appendChild(li);
+    */
     // Update localStorage
     updateLocalScores();
     // Move to Highscores content
@@ -275,7 +288,6 @@ const tryAgainBtn = document.getElementById("try-again");
 tryAgainBtn.addEventListener("click", function() {
     location.reload();
 });
-
 
 // ****** RUN CODE ******
 
