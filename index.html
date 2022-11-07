@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,17 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <!-- Time tracker -->
-    <header>
+    <header class="flex">
         <h2>Timed Quiz </h2>
         <span id="timer">60</span>
     </header>
     <!-- Quiz challenge title -->
     <section id="quiz-title" class="container">
         <h1>Timed JS Quiz</h1>
-        <p>Try to answer these code-related questions within the time limit. 
+        <p>Try to answer these code-related questions within the time limit.
             Keep in mind that incorrect answers will penlize your score/time by five seconds!
         </p>
         <button id="start-quiz-btn">START</button>
@@ -49,19 +51,19 @@
         <!-- TO DO - Add validation for empty initials -->
         <div>
             <input type="text" id="input-score" placeholder="Enter Initials" minlength="3" maxlength="3" size="3">
-            <button id="submit-score">SUBMIT</button>  
+            <button id="submit-score">SUBMIT</button>
         </div>
     </section>
     <!-- View high score -->
     <section id="container-score-list" class="container hidden">
         <h3>High Scores</h3>
-        <ol id="score-list" class="">
+        <ol id="score-list" class="flex">
             <!-- Score data from local host dynamically generated -->
         </ol>
         <span id="cleared" class="hidden">Cleared!</span>
         <div>
             <button id="try-again">TRY AGAIN</button>
-        <button id="clear-highscores-btn">CLEAR HIGH SCORES</button>
+            <button id="clear-highscores-btn">CLEAR HIGH SCORES</button>
         </div>
     </section>
     <button id="view-highscores" class="">High Scores</button>
@@ -70,4 +72,5 @@
     <!-- Load JS for dynamically created quiz -->
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
