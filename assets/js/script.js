@@ -10,20 +10,44 @@ let timeLeft = 60;
 //Object that stores arrays of question/answer key/value pairs
 const quiz = [
     {
-        q: "This is a test question. Testing out the CSS to style the real questions that will be used later. It needs to be longer than expected to anticipate more in-depth questions and possibly code segments...",
-        a1: "This is the answer to A.",
-        a2: "This is B and is a little longer to try and anticipate code segments and what not...testtesttesttesttesttesttest",
-        a3: "It's always C....",
-        a4: "The all of the above answer..... ",
+        q: "Inside which HTML element do we put the JavaScript?",
+        a1: "<script>",
+        a2: "<js>",
+        a3: "<scripting>",
+        a4: "<javascript>",
+        correct: "a1"
+    },
+    {
+        q: "Where is the correct place to insert a JavaScript?",
+        a1: "The <body> section",
+        a2: "The <head> section",
+        a3: "Both the <head> section and the <body> section are correct",
+        a4: "The <footer> section",
         correct: "a3"
     },
     {
-        q: "This is the second test question.",
-        a1: "This is the answer to 1.",
-        a2: "This is 2 and is a little longer to try and anticipate code segments and what not...testtesttesttesttesttesttest",
-        a3: "It's always 3?",
-        a4: "The all of the above answer..... ",
-        correct: "a1"
+        q: "How do you write \"Hello World\" in an alert box?",
+        a1: "msg(\"Hello World\");",
+        a2: "alert(\"Hellow World\");",
+        a3: "msgBox(\"Hellow World\");",
+        a4: "alertBox(\"Hellow World\");",
+        correct: "a2"
+    },
+    {
+        q: "How do you create a function in JavaScript?",
+        a1: "Function:myFunction()",
+        a2: "function myFunction()",
+        a3: "function = myFunction()",
+        a4: "function: myfunction()",
+        correct: "a2"
+    },
+    {
+        q: "How to write an IF statement for executing some code if \"i\" is NOT equal to 5?",
+        a1: "if i <> 5",
+        a2: "if (i != 5)",
+        a3: "if (i <> 5)",
+        a4: "if i =! 5 then",
+        correct: "a2"
     }
 ];
 // Variable to hold the next quiz index
