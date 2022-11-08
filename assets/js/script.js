@@ -77,6 +77,12 @@ const globalFunctions = {
             // Check if time ran out
             if (!timeLeft) {
                 clearInterval(timeInterval);
+                // Move user to the game over content
+                // Generate html span to show player score
+                document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
+                // Change visible content
+                globalFunctions.toggleVisible("container-quiz");
+                globalFunctions.toggleVisible("container-gameover");
             }
         }, 1000);
     },
