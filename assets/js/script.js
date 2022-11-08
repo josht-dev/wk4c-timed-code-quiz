@@ -170,11 +170,25 @@ const globalFunctions = {
         }
         // Loop through obj, adding each key/value pair to an html li element
         for (const key in obj) {
-            let li = document.createElement("li");
-            li.setAttribute("class", "score");
-            li.textContent = `${key} ${obj[key]}`;
-            // Add the li to the html
-            htmlScoreList.appendChild(li);
+            // check if player has multiple scores
+            if (Array.isArray(obj[key])) {
+                console.log("array check success");
+                obj[key].forEach(val => {
+                    console.log("foreach check");
+                    let li = document.createElement("li");
+                    li.setAttribute("class", "score");
+                    li.textContent = `${key} ${val}`;
+                    // Add the li to the html
+                    htmlScoreList.appendChild(li);
+                });
+            } else {
+                console.log("array was false");
+                let li = document.createElement("li");
+                li.setAttribute("class", "score");
+                li.textContent = `${key} ${obj[key]}`;
+                // Add the li to the html
+                htmlScoreList.appendChild(li);
+            } 
         }
     },
     // Update local storage with high scores
@@ -207,7 +221,20 @@ submitScoreBtn.addEventListener("click", function () {
     if (!playerInitial) {
         return;
     }
-    highScores[playerInitial] = playerScore;
+    // Check if initials already exist
+    if (highScores[playerInitial]) {
+        // Check if player has multiple scores already
+        if (Array.isArray(highScores[playerInitial])) {
+            highScores[playerInitial].push(playerScore);
+        } else {
+            let oldScore = highScores[playerInitial];
+            highScores[playerInitial] = [];
+            highScores[playerInitial].push(oldScore);
+            highScores[playerInitial].push(playerScore);
+        }
+    } else {
+        highScores[playerInitial] = playerScore;
+    }
     // Generate HTML for new score
     globalFunctions.updateHtmlHighScores(highScores);
     // Update localStorage
@@ -247,7 +274,3 @@ if (localStorage.getItem("highScores") !== null) {
     // Set to temp test data if no data present
    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
-
-//// ****** STILL WORKING ON THE CODE BELOW ******
-// TO DO - UPDATE QUIZ OBJ WITH REAL QUIZ DATA!!!!!!!!!!!!!!!!!!
-// TO DO - Get duplicate player initial's working for multiple scores
