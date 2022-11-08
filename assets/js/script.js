@@ -1,5 +1,6 @@
 // ****** DOM global variables ******
 const htmlTime = document.getElementById("timer");
+const htmlQuizContainer = document.getElementById("container-quiz");
 const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
@@ -81,8 +82,10 @@ const globalFunctions = {
                 // Generate html span to show player score
                 document.getElementById("player-score").textContent = `Your score is ${playerScore}!`;
                 // Change visible content
-                globalFunctions.toggleVisible("container-quiz");
-                globalFunctions.toggleVisible("container-gameover");
+                if (!htmlQuizContainer.classList.contains("hidden")) {
+                    globalFunctions.toggleVisible("container-quiz");
+                    globalFunctions.toggleVisible("container-gameover");
+                }
             }
         }, 1000);
     },
@@ -153,17 +156,30 @@ const globalFunctions = {
         let questionIndex = nextQuizQuestion - 1;
         // get correct answer
         let correctAnswer = quiz[questionIndex].correct;
-        // compare user answer to correct answer
+        /* NEEDS DEBUG LATER
+        // Set html correct indicators to hidden
+        if (document.getElementById("correct").classList.contains("hidden")) {
+            globalFunctions.toggleVisible("correct");
+        }
+        if (document.getElementById("incorrect").classList.contains("hidden")) {
+            globalFunctions.toggleVisible("incorrect");
+        }
+        */
+        // Compare user answer to correct answer
         if (userAnswer === correctAnswer) {
+            /* NEEDS DEBUG LATER
             // Display to user that they got it right
             globalFunctions.toggleVisible("correct");
+            */
             // Increase player score
             playerScore += 5;
             // Load next question
             globalFunctions.nextQuestion()
         } else {
+            /* NEEDS DEBUG LATER
             // Display to user that they got it wrong
             globalFunctions.toggleVisible("incorrect");
+            */
             // Penalize User for incorrect answer
             globalFunctions.subtractTime();
             // Load next question
