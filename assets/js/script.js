@@ -4,6 +4,8 @@ const htmlQuestionContainer = document.getElementById("container-question");
 const htmlAnswerContainer = document.getElementById("container-answer");
 const htmlAnswerList = htmlAnswerContainer.firstElementChild.children;
 const htmlScoreList = document.getElementById("score-list");
+// Grab a live collection of the html li elements for the high score
+const htmlToSort = document.getElementsByClassName("score");
 
 //  ****** JS global variables ******
 let timeLeft = 60;
@@ -172,23 +174,46 @@ const globalFunctions = {
         for (const key in obj) {
             // check if player has multiple scores
             if (Array.isArray(obj[key])) {
-                console.log("array check success");
                 obj[key].forEach(val => {
-                    console.log("foreach check");
                     let li = document.createElement("li");
                     li.setAttribute("class", "score");
+                    li.setAttribute("data-score", val);
                     li.textContent = `${key} ${val}`;
                     // Add the li to the html
                     htmlScoreList.appendChild(li);
                 });
             } else {
-                console.log("array was false");
                 let li = document.createElement("li");
                 li.setAttribute("class", "score");
+                li.setAttribute("data-score", obj[key]);
                 li.textContent = `${key} ${obj[key]}`;
                 // Add the li to the html
                 htmlScoreList.appendChild(li);
-            } 
+            }
+        }
+        // Sort HTML high score li's
+        // Loop through htmlToSort moving the highest scores to the top
+        for (let i = 0; i < htmlToSort.length; i++) {
+            // Skip first loop
+            if (i === 0) {
+                continue;
+            }
+            let score = Number(htmlToSort[i].getAttribute("data-score"));
+            /* Compare this index with rest of collection until it is the highest
+            number, then place it*/
+            for (let index = 0; index < htmlToSort.length; index++) {
+                if (score >= htmlToSort[index].getAttribute("data-score")) {
+                    htmlToSort[index].insertAdjacentElement("beforebegin", htmlToSort[i]);
+                    break;
+                }
+            }
+        }
+        /* Only show the top 10 high scores
+        TO DO - change code to only keep the top 10 scores */
+        for (let i = 0; i < htmlToSort.length; i++) {
+            if (i >= 10) {
+                htmlToSort[i].classList.toggle("hidden");
+            }
         }
     },
     // Update local storage with high scores
@@ -269,8 +294,8 @@ viewHighscores.addEventListener("click", function () {
 // ****** CODE RAN AT SCRIPT LOAD ******
 // Check local storage for existing high scores and load them
 if (localStorage.getItem("highScores") !== null) {
-   highScores = JSON.parse(localStorage.getItem("highScores"));
+    highScores = JSON.parse(localStorage.getItem("highScores"));
 } else {
     // Set to temp test data if no data present
-   localStorage.setItem("highScores", JSON.stringify(highScores));
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
