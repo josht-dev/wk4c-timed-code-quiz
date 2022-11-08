@@ -2,12 +2,9 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This is a timed quiz of JavaScript question for users to compete with their coding knowledge. 
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+I successfully used an interval timer and generated the questions, answers, and high scores dynamically from JavaScript via the DOM API. High scores are stored and retrieved from the users local storage.
 
 ## Installation
 
@@ -15,9 +12,11 @@ What are the steps required to install your project? Provide a step-by-step desc
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To use the timed quiz, click the start button to begin. Clicking on an answer chip will choose that answer. If it was not the last question, the user will be shown if their answer was correct or incorrect. Incorrect answers will subtract 5 seconds from their time while correct answers will add 5 to their score. Any left over time will also be added to their score.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+The player will be prompted to enter their initials while displaying their score. They will be taken to the high score screen which will display the top 10 high scores. From there they can clear the high scores or try again. 
+
+The High Scores button at the beginning will also display a list of the top 10 high scores.
 
 Deployed page link: https://josht-dev.github.io 
 
@@ -28,8 +27,6 @@ Deployed page link: https://josht-dev.github.io
 Page color schema - Generated with the help of the Material UI color tool for accessibility. https://m2.material.io/resources/color/#!/?view.left=0&view.right=0
 
 Quiz questions came from W3 Schools. https://www.w3schools.com/js/js_quiz.asp
-
-List your collaborators, if any, with links to their GitHub profiles.
 
 ## License
 
